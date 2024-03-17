@@ -105,12 +105,12 @@ export default {
   background-color: #fff;
     border-radius: 3px;
     box-shadow: 0 5px 20px 0 hsla(207,5%,58%,.6);
-    /* height: 90vh; */
+    height: auto;
     margin-right: 5px;
     margin-top: 14px;
     max-width: 800px;
     overflow-x: hidden;
-    position: absolute;
+    position: fixed;
     right: 0;
     top: 38px;
     -webkit-user-select: none;
@@ -157,8 +157,14 @@ export default {
     top: 75px;
   }
   .github-users {
-    height: 85vh;
+    height: 80vh;
   }
   
  }
+ @media screen and (max-width: 490px) {
+.github-users {
+  height: 77vh;
+}
+
+}
 </style>
