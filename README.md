@@ -16,6 +16,8 @@ $ npm run start
 # generate static project
 $ npm run generate
 ```
+Note: If you found api status 403 then Please close existing tab and reopen in another tab!!!!
+
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
