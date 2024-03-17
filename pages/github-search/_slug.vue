@@ -3,9 +3,9 @@
     <div v-show="pageload === false">
       <div v-if="$store.state.totalUserByQuery > 0">
         <div class="search-result">
-            <h1>Search Result For "<span>{{ this.seachQuery }}</span>"</h1>
+            <h1>Search Result For "<span>{{ this.searchQuery }}</span>"</h1>
             <h2>We Found "<span>{{ $store.state.totalUserByQuery }}"</span> User For Your Search Query
-              "<span>{{ this.seachQuery }}</span>"
+              "<span>{{ this.searchQuery }}</span>"
             </h2>
         </div>
         <div class="users-container">
@@ -20,8 +20,12 @@
         </div>
       </div>
       <div v-else>
-        <div class="search-result">
-            <h1>No GitHub User Found For "<span>{{ this.seachQuery }}</span>"</h1>
+        <div class="search-result" v-if="$store.state.apiError">
+          <h1>{{ $store.state.apiError }}</h1>
+          <h2>Please Close this tab and open in another tab</h2>
+        </div>
+        <div v-else class="search-result">
+            <h1>No GitHub User Found For "<span>{{ this.searchQuery }}</span>"</h1>
             <h2>Search Again With Diffrent User Name</h2>
         </div>
       </div>
@@ -35,7 +39,7 @@ export default {
   name: "GitHubSearch",
   data() {
     return {
-        seachQuery: '',
+        searchQuery: '',
         pageload: false
     };
   },
@@ -51,23 +55,25 @@ export default {
     },
   },
   methods: {
+    // This function is designed to dispatch a store action to retrieve values
+    // from the GitHub search API based on the user's search query.
      async getData() {
       document.querySelector("input[name='st']").value = ""
       this.pageload = true
-      await this.$store.dispatch('searchUsers', {query: this.seachQuery, check: false});
+      await this.$store.dispatch('searchUsers', {query: this.searchQuery, check: false});
       this.pageload = false
      }
   },
    async mounted() {
       if (this.$route.query?.q) {
-      this.seachQuery = this.$route.query.q
+      this.searchQuery = this.$route.query.q
       await this.getData()
     }
   },
   watch: {
     "$route" : async function(to, from) {
       if(to.query?.q) {
-        this.seachQuery = this.$route.query.q
+        this.searchQuery = this.$route.query.q
         await this.getData()
       }
     }

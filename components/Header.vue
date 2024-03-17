@@ -2,8 +2,7 @@
   <div>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <!-- <a class="navbar-brand" href="#">InMotion Task</a> -->
-        <Nuxt-Link class="navbar-brand" to="/">InMotion Task</Nuxt-Link>
+        <a class="navbar-brand" href="/">InMotion Task</a>
         <div class="form-inline search-form active" id="search-id">
           <input
             ref="searchControl"
