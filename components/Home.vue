@@ -8,7 +8,7 @@
       </p>
       <p>
         => As you type a name into the search box, search results will appear
-        after entering just one character.
+        after entering just two character.
       </p>
       <p>
         => After receiving auto-suggested user names, you can proceed to search
